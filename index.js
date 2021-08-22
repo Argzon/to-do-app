@@ -8,7 +8,7 @@ const current_tasks = document.querySelectorAll(".delete");
 for (let i = 0; i < current_tasks.length; i++) {
   current_tasks[i].onclick = function () {
     this.parentNode.remove();
-    localStorage.removeItem("lists");
+    localStorage.setItem("lists", ul.innerHTML);
   };
 }
 
@@ -70,7 +70,7 @@ function newItem() {
     for (let i = 0; i < current_tasks.length; i++) {
       current_tasks[i].onclick = function () {
         this.parentNode.remove();
-        localStorage.removeItem("lists");
+        localStorage.setItem("lists", ul.innerHTML);
       };
     }
 
