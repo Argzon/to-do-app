@@ -125,3 +125,12 @@ body {
 .completed {
   border: 2px solid #4ce364;
 }
+
+@media screen and (max-width: 425px) {
+  #app {
+    border-radius: 0;
+    width: auto;
+    margin: 0;
+    padding: 30px 25px;
+  }
+}
