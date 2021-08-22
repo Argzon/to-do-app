@@ -1,6 +1,31 @@
 const currentList = (document.querySelector(".list").innerHTML =
   localStorage.getItem("lists"));
 
+const ul = document.querySelector(".list");
+
+//delete a task
+const current_tasks = document.querySelectorAll(".delete");
+for (let i = 0; i < current_tasks.length; i++) {
+  current_tasks[i].onclick = function () {
+    this.parentNode.remove();
+    localStorage.removeItem("lists");
+  };
+}
+
+// completed task
+const checkbox = document.querySelectorAll(".checkbox");
+for (let i = 0; i < checkbox.length; i++) {
+  checkbox[i].onclick = function () {
+    if (this.checked) {
+      this.parentElement.classList.add("completed");
+      localStorage.setItem("lists", ul.innerHTML);
+    } else {
+      this.parentElement.classList.remove("completed");
+      localStorage.setItem("lists", ul.innerHTML);
+    }
+  };
+}
+
 function newItem() {
   if (document.querySelector(".addnewtask").value.length == 0) {
     alert("Please enter a task");
@@ -52,12 +77,22 @@ function newItem() {
     const checkbox = document.querySelectorAll(".checkbox");
     for (let i = 0; i < checkbox.length; i++) {
       checkbox[i].onclick = function () {
-        this.parentElement.classList.toggle("completed");
+        if (this.checked) {
+          this.parentElement.classList.add("completed");
+          localStorage.setItem("lists", ul.innerHTML);
+        } else {
+          this.parentElement.classList.remove("completed");
+          localStorage.setItem("lists", ul.innerHTML);
+        }
       };
     }
     document.querySelector(".addnewtask").value = "";
   }
 }
+
+/**
+ *  On click and on submit event listeners
+ */
 
 document.querySelector(".addTask").onclick = function () {
   newItem();
