@@ -1,3 +1,6 @@
+const currentList = (document.querySelector(".list").innerHTML =
+  localStorage.getItem("lists"));
+
 function newItem() {
   if (document.querySelector(".addnewtask").value.length == 0) {
     alert("Please enter a task");
@@ -37,11 +40,12 @@ function newItem() {
     li.appendChild(text);
     li.appendChild(deleteTask);
     ul.appendChild(li);
-
+    localStorage.setItem("lists", ul.innerHTML);
     const current_tasks = document.querySelectorAll(".delete");
     for (let i = 0; i < current_tasks.length; i++) {
       current_tasks[i].onclick = function () {
         this.parentNode.remove();
+        localStorage.removeItem("lists");
       };
     }
 
